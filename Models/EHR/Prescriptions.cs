@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HospitalManagementProject.DTO.PrescriptionDto;
 
 namespace HospitalManagementProject.Models.EHR;
 
@@ -34,9 +35,9 @@ public class Prescriptions(Guid id) :Base(id)
         DoctorId = doctor;
         PatientId = patient;
     }
-    public Prescriptions CreatePrescription(List<string> symptoms, string diagnosis, List<string> medications, string notes, string treatment, Guid doctor, Guid patient)
+    public Prescriptions CreatePrescription(CreatePrescriptionDto prescription)
     {
-        return new Prescriptions(Guid.NewGuid(),symptoms, diagnosis, medications, notes, treatment, doctor, patient);
+        return new Prescriptions(prescription.Id,prescription.Symptoms, prescription.Diagnosis, prescription.Medications, prescription.Notes, prescription.Treatment, prescription.Doctor, prescription.Patient);
     }
     
 }

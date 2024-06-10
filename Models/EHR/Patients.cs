@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HospitalManagementProject.DTO.PatientsDto;
 using HospitalManagementProject.Enums;
 
 namespace HospitalManagementProject.Models.EHR;
@@ -17,14 +18,12 @@ public class Patients(Guid id) : Base(id)
     public MaritalStatus MaritalStatus { get; init; }
     public string? Address { get; init; }
     [StringLength(13)] public string PhoneNumber { get; init; } = null!;
-
-    public string? ZodiacSign { get; init; }
     public Guid RecordId { get; init; }
     public Records? Records { get; init; }
 
     private Patients(Guid id, string fistName, string lastName, string middleName, DateTime dateOfBirth, Gender gender,
-        BloodGroups bloodGroups, MaritalStatus maritalStatus, string? address, string phoneNumber, string zodiacSign,
-        Guid recordId) : this(id)
+        BloodGroups bloodGroups, MaritalStatus maritalStatus, string? address, string phoneNumber
+        ) : this(id)
     {
         FistName = fistName;
         LastName = lastName;
@@ -35,15 +34,11 @@ public class Patients(Guid id) : Base(id)
         MaritalStatus = maritalStatus;
         Address = address;
         PhoneNumber = phoneNumber;
-        ZodiacSign = zodiacSign;
-        RecordId = recordId;
     }
 
-    public Patients CreatePatient(string fistName, string lastName, string middleName, DateTime dateOfBirth,
-        Gender gender, BloodGroups bloodGroups, MaritalStatus maritalStatus, string? address, string phoneNumber,
-        string zodiacSign, Guid recordId)
+    public Patients CreatePatient(CreatePatientDto patientDto)
     {
-        return new Patients(Guid.NewGuid(), fistName, lastName, middleName, dateOfBirth, gender, bloodGroups,
-            maritalStatus, address, phoneNumber, zodiacSign, recordId);
+        return new Patients(Guid.NewGuid(), patientDto.GivenName, patientDto.FamilyName, patientDto.MiddleName, patientDto.DOB, patientDto.Sex, patientDto.BloodGroups,
+            patientDto.MaritalStatus, patientDto.Address, patientDto.PhoneNumber);
     }
 }

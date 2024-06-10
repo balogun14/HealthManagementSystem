@@ -1,3 +1,4 @@
+using HospitalManagementProject.DTO.DoctorsDto;
 using HospitalManagementProject.Enums;
 
 namespace HospitalManagementProject.Models.EHR;
@@ -16,9 +17,9 @@ public class Doctors(Guid id) :Base(id)
         Speciality = speciality;
     }
 
-    public Doctors CreateDoctor( string firstname, string lastName, Specialization speciality)
+    public Doctors CreateDoctor( CreateDoctorDto doctorDto)
     {
-        return new Doctors(Guid.NewGuid(), firstname, lastName, speciality);
+        return new Doctors(doctorDto.id, doctorDto.Firstname, doctorDto.LastName, doctorDto.Speciality);
     }
 }
 
