@@ -9,7 +9,11 @@ public class Doctors(Guid id) :Base(id)
     public string LastName { get; init; }
 
     public Specialization Speciality { get; init; }
-    
+
+    public Doctors():this(id:Guid.NewGuid())
+    {
+        
+    }
     private Doctors(Guid id, string firstname, string lastName, Specialization speciality) : this(id)
     {
         Firstname = firstname;

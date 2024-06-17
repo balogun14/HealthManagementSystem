@@ -24,7 +24,9 @@ public class Prescriptions(Guid id) :Base(id)
     public Doctors Doctor { get; init; }
     public  Guid PatientId { get; init; }
     public Patients Patient { get; set; }
-    
+
+    public Prescriptions():this(id:Guid.NewGuid())
+    {}
     private Prescriptions(Guid id,List<string> symptoms, string diagnosis, List<string> medications, string notes, string treatment, Guid doctor, Guid patient):this(id)
     {
         Symptoms = symptoms;

@@ -21,6 +21,10 @@ public class Patients(Guid id) : Base(id)
     public Guid RecordId { get; init; }
     public Records? Records { get; init; }
 
+    public Patients():this(id:Guid.NewGuid())
+    {
+        
+    }
     private Patients(Guid id, string fistName, string lastName, string middleName, DateTime dateOfBirth, Gender gender,
         BloodGroups bloodGroups, MaritalStatus maritalStatus, string? address, string phoneNumber
         ) : this(id)

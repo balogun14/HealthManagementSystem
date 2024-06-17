@@ -12,6 +12,10 @@ public class Appointments(Guid id) :Base(id)
     public Guid DoctorId { get; init; }
     public Doctors Doctor { get; init; }
 
+    public Appointments():this(id:Guid.NewGuid())
+    {
+        
+    }
     private Appointments(Guid id, string title, DateTime appointmentTime, Guid patientId,Guid doctorId):this(id)
     {
         Id = id;

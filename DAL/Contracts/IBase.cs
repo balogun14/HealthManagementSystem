@@ -7,5 +7,4 @@ public interface IBase<TEntity , in TCreateEntity, in TEditEntity>
     Task<bool> Update(TEditEntity editEntity);
     Task<bool> Delete(Guid id);
     Task Create(TCreateEntity createEntity );
-    Task GetByName(string name);
 }

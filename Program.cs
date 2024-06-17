@@ -1,7 +1,11 @@
 using AspNetCoreHero.ToastNotification;
 using AspNetCoreHero.ToastNotification.Extensions;
 using HospitalManagementProject.DAL;
+using HospitalManagementProject.DAL.Contracts;
+using HospitalManagementProject.DAL.Repository;
 using HospitalManagementProject.Models;
+using HospitalManagementProject.Models.APPOINTMENTS;
+using HospitalManagementProject.Models.EHR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,7 +31,7 @@ builder.Services.AddIdentity<User, IdentityRole>(opt =>
     })
     .AddEntityFrameworkStores<HospitalManagementDbContext>()
     .AddDefaultTokenProviders();
-// builder.Services.AddScoped<IBlogRepo, BlogRepo>().AddScoped<IAdmin, AdminRepo>().AddScoped<IAuthor, AuthorRepo>();
+builder.Services.AddScoped<IDoctor, DoctorRepo>().AddScoped<IPatient, PatientRepo>().AddScoped<IPrescription, PrescriptionRepo>().AddScoped<IAppointment,AppointmentRepo>();
 builder.Services.AddControllersWithViews();
 builder.Services.AddHealthChecks();
 builder.Services.AddMvc();
